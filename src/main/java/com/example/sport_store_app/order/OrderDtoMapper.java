@@ -15,7 +15,7 @@ public class OrderDtoMapper {
         orderDto.setShippingPostalCode(order.getShippingPostalCode());
         orderDto.setPaymentStatus(order.getPaymentStatus());
         orderDto.setCreated_at(order.getCreated_at());
-        orderDto.setUserDto(UserDtoMapper.map(order.getUser()));
+        orderDto.setUserDto(UserDtoMapper.toDto(order.getUser()));
         return orderDto;
     }
 }
