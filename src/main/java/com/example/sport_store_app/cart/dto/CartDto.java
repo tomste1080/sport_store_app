@@ -14,5 +14,5 @@ public class CartDto {
     private Long id;
     private String guestToken;
     private LocalDateTime updated_at;
-    private User user;
+    private Long userId;
 }

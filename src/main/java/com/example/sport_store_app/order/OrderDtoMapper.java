@@ -4,7 +4,7 @@ import com.example.sport_store_app.order.dto.OrderDto;
 import com.example.sport_store_app.user.UserDtoMapper;
 
 public class OrderDtoMapper {
-    public static OrderDto map(Order order) {
+    public static OrderDto toDto(Order order) {
         OrderDto orderDto = new OrderDto();
         orderDto.setId(order.getId());
         orderDto.setOrderNumber(order.getOrderNumber());
@@ -17,5 +17,20 @@ public class OrderDtoMapper {
         orderDto.setCreated_at(order.getCreated_at());
         orderDto.setUserDto(UserDtoMapper.toDto(order.getUser()));
         return orderDto;
+    }
+
+    public static Order toEntity(OrderDto orderDto) {
+        Order order = new Order();
+        order.setId(orderDto.getId());
+        order.setOrderNumber(orderDto.getOrderNumber());
+        order.setTotalAmount(orderDto.getTotalAmount());
+        order.setOrderStatus(orderDto.getOrderStatus());
+        order.setShippingStreet(orderDto.getShippingStreet());
+        order.setShippingCity(orderDto.getShippingCity());
+        order.setShippingPostalCode(orderDto.getShippingPostalCode());
+        order.setPaymentStatus(orderDto.getPaymentStatus());
+        order.setCreated_at(orderDto.getCreated_at());
+        order.setUser(UserDtoMapper.toEntity(orderDto.getUserDto()));
+        return order;
     }
 }

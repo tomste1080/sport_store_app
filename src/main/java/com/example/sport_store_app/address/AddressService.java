@@ -37,4 +37,12 @@ public class AddressService {
         Address addressToSaved = addressRepository.save(address);
         return AddressDtoMapper.toDto(addressToSaved);
     }
+
+    @Transactional
+    public void deleteAddress(Long id) {
+        if(!addressRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Address with id: " + id + " not found");
+        }
+        addressRepository.deleteById(id);
+    }
 }

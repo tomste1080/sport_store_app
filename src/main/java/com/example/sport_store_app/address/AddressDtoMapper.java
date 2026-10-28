@@ -12,7 +12,6 @@ public class AddressDtoMapper {
         addressDto.setCity(address.getCity());
         addressDto.setPostalCode(address.getPostalCode());
         addressDto.setCountry(address.getCountry());
-        addressDto.setUserDto(UserDtoMapper.toDto(address.getUser()));
         return addressDto;
     }
 
@@ -23,7 +22,6 @@ public class AddressDtoMapper {
         address.setCity(addressDto.getCity());
         address.setPostalCode(addressDto.getPostalCode());
         address.setCountry(addressDto.getCountry());
-        address.setUser(UserDtoMapper.toEntity(addressDto.getUserDto()));
         return address;
     }
 }

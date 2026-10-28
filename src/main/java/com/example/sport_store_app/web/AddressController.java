@@ -23,4 +23,10 @@ public class AddressController {
     public ResponseEntity<AddressDto> addAddressToUser(@PathVariable Long id, @RequestBody AddressDto addressDto) {
         return ResponseEntity.ok(addressService.addAddressToUser(id, addressDto));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAddress(@PathVariable Long id) {
+        addressService.deleteAddress(id);
+        return ResponseEntity.noContent().build();
+    }
 }

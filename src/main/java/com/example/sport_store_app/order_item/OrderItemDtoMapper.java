@@ -11,7 +11,7 @@ public class OrderItemDtoMapper {
         orderItemDto.setName(orderItem.getName());
         orderItemDto.setUnitPrice(orderItem.getUnitPrice());
         orderItemDto.setQuantity(orderItem.getQuantity());
-        orderItemDto.setOrderDto(OrderDtoMapper.map(orderItem.getOrder()));
+        orderItemDto.setOrderDto(OrderDtoMapper.toDto(orderItem.getOrder()));
         return orderItemDto;
     }
 }

@@ -15,5 +15,4 @@ public class AddressDto {
     private String city;
     private String postalCode;
     private String country;
-    private UserDto userDto;
 }
