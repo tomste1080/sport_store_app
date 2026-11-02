@@ -51,8 +51,8 @@ public class ProductService {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product with id:" + id + "not found"));
         if (productDto.getCategoryDto() != null && productDto.getCategoryDto().getId() != null) {
-            Long categoryId = productDto.getId();
-            Category category = categoryRepository.findById(productDto.getCategoryDto().getId())
+            Long categoryId = productDto.getCategoryDto().getId();
+            Category category = categoryRepository.findById(categoryId)
                     .orElseThrow(() -> new ResourceNotFoundException("Cateogry with id:" + categoryId + "not found"));
             product.setCategory(category);
         }
@@ -66,7 +66,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void deleteCategory(Long id) {
+    public void deleteProduct(Long id) {
         if (!productRepository.existsById(id)) {
             throw new ResourceNotFoundException("Product with id:" + id + "not found");
         }
