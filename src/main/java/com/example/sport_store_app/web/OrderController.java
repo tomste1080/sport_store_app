@@ -2,7 +2,9 @@ package com.example.sport_store_app.web;
 
 import com.example.sport_store_app.order.OrderService;
 import com.example.sport_store_app.order.OrderStatus;
+import com.example.sport_store_app.order.dto.CreateOrderRequestDto;
 import com.example.sport_store_app.order.dto.OrderDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +26,7 @@ public class OrderController {
 
     @GetMapping("/orderId")
     public ResponseEntity<OrderDto> getOrderDetails(@PathVariable Long orderId) {
-        return ResponseEntity.ok(orderService.getOrdersDetails(orderId));
+        return ResponseEntity.ok(orderService.getOrderDetails(orderId));
     }
 
     @PatchMapping("/{orderId}/status")
@@ -35,5 +37,11 @@ public class OrderController {
     @PostMapping("/{orderId}/pay")
     public ResponseEntity<OrderDto> payForOrder(@PathVariable Long orderId) {
         return ResponseEntity.ok(orderService.payForOrder(orderId));
+    }
+
+    @PostMapping("/checkout/{userId}")
+    public ResponseEntity<OrderDto> createOrderFromCart(@PathVariable Long userId, @RequestBody CreateOrderRequestDto dto) {
+        OrderDto orderDto = orderService.createOrderFromCart(userId, dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderDto);
     }
 }

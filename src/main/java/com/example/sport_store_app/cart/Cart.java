@@ -1,11 +1,14 @@
 package com.example.sport_store_app.cart;
 
+import com.example.sport_store_app.cart_item.CartItem;
 import com.example.sport_store_app.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cart")
@@ -23,4 +26,6 @@ public class Cart {
     @ManyToOne
     @JoinColumn(name = "users_id")
     private User user;
+    @OneToMany(mappedBy = "cart")
+    List<CartItem> cartItems = new ArrayList<>();
 }
